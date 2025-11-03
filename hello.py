@@ -1,7 +1,7 @@
 def sum_of_two_numbers(a, b):
     return a + b
 
-# Example
+# Example of summing up two numbers
 num1 = 5
 num2 = 7
 result = sum_of_two_numbers(num1, num2)
