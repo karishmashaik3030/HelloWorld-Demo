@@ -1,0 +1,35 @@
+name: Run Docs Unit Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'  # or your required version
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest pytest-cov  # add any other testing libs
+
+      # Step 4: Run unit tests inside docs/
+      - name: Run unit tests in docs folder
+        run: |
+          cd docs
+          pytest --maxfail=1 --disable-warnings -q --cov=. --cov-report=term-missing
