@@ -3,9 +3,6 @@ name: Run Docs Unit Tests
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
 
 jobs:
   test:
